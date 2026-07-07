@@ -2,28 +2,28 @@
     {
         "version":  "4.0.0",
         "fileName":  "GBS-Setup-4.0.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-4.0.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-4.0.0.exe",
         "publishedAt":  "2026-05-07T07:51:55.8956514Z",
         "notes":  "Version 4.0.0 - cloud backup wizard, guided readiness checks, stronger backup validation, clickable step badges, and updated payment handling improvements."
     },
     {
         "version":  "3.2.0",
         "fileName":  "GBS-Setup-3.2.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-3.2.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-3.2.0.exe",
         "publishedAt":  "2026-04-05T05:23:00.7921574Z",
         "notes":  "Version 3.2.0 - Latest portal release."
     },
     {
         "version":  "3.1.0",
         "fileName":  "GBS-Setup-3.1.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-3.1.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-3.1.0.exe",
         "publishedAt":  "2026-04-04T12:50:06.0560448Z",
         "notes":  "Version 3.1.0 - Invoice tax mode enhancements, item reorder controls, and decimal input fixes."
     },
     {
         "version":  "3.0.0",
         "fileName":  "GBS-Setup-3.0.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-3.0.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-3.0.0.exe",
         "publishedAt":  "2026-03-20T16:30:29.4288380Z",
         "notes":  [
                       "OTP throttling and verify lockout for account recovery",
@@ -36,7 +36,7 @@
     {
         "version":  "2.5.0",
         "fileName":  "GBS-Setup-2.5.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-2.5.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-2.5.0.exe",
         "publishedAt":  "2026-03-19T15:05:59.8164986Z",
         "notes":  [
                       "Google Drive sync error handling improved",
@@ -46,7 +46,7 @@
     {
         "version":  "2.4.0",
         "fileName":  "GBS-Setup-2.4.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-2.4.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-2.4.0.exe",
         "publishedAt":  "2026-03-18T00:00:00Z",
         "notes":  [
                       "Immutable audit export and verification enhancements",
@@ -56,7 +56,7 @@
     {
         "version":  "2.3.0",
         "fileName":  "GBS-Setup-2.3.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-2.3.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-2.3.0.exe",
         "publishedAt":  "2026-03-17T00:00:00Z",
         "notes":  [
                       "Cloud backup verification and restore safety updates"
@@ -65,7 +65,7 @@
     {
         "version":  "2.2.0",
         "fileName":  "GBS-Setup-2.2.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-2.2.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-2.2.0.exe",
         "publishedAt":  "2026-03-16T00:00:00Z",
         "notes":  [
                       "Feature and reliability updates"
@@ -74,7 +74,7 @@
     {
         "version":  "2.0.0",
         "fileName":  "GBS-Setup-2.0.0.exe",
-        "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Setup-2.0.0.exe",
+        "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Setup-2.0.0.exe",
         "publishedAt":  "2026-03-15T00:00:00Z",
         "notes":  [
                       "Baseline stable release"

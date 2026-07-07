@@ -1,7 +1,7 @@
 {
     "version":  "3.0.0-trial",
     "fileName":  "GBS-Trial-Setup-3.0.0-trial.exe",
-    "downloadUrl":  "https://github.com/G4thm/data-sync-tool/releases/download/installers/GBS-Trial-Setup-3.0.0-trial.exe",
+    "downloadUrl":  "https://github.com/G4thm/gbs-releases/releases/download/installers/GBS-Trial-Setup-3.0.0-trial.exe",
     "publishedAt":  "2026-03-21T12:00:00.0000000Z",
     "notes":  "✨ 30-day trial of GBS v3.0.0 with all features|Customizable unit fields - NEW in v3.0|Max 100 invoices/quotations, 3 users, community support|Upgrade to full version for unlimited access|Perfect for testing before purchase",
     "trialDays":  30
