@@ -3,3 +3,12 @@ downloads/
 
 # Build artifacts and snapshots not needed on Vercel
 publish-static-live-20260320232831/
+
+.vercel
+
+# Node modules and build scripts
+node_modules/
+package-lock.json
+package.json
+upload.js
+
