@@ -1,0 +1,5 @@
+# Exclude large EXE installer files - served from Supabase Storage
+downloads/
+
+# Build artifacts and snapshots not needed on Vercel
+publish-static-live-20260320232831/

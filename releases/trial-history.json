@@ -1,0 +1,16 @@
+﻿[
+[
+    {
+        "version":  "3.0.0-trial",
+        "fileName":  "GBS-Trial-Setup-3.0.0-trial.exe",
+        "downloadUrl":  "./downloads/GBS-Trial-Setup-3.0.0-trial.exe",
+        "publishedAt":  "2026-03-20T16:31:31.8176509Z",
+        "notes":  [
+                      "12-day trial edition build",
+                      "Limited advanced administration and backup operations",
+                      "Install full edition for unlimited access"
+                  ],
+        "trialDays":  12
+    }
+]
+]

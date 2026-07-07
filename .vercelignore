@@ -1,0 +1,12 @@
+# Exclude large EXE files - these are served from Supabase Storage
+downloads/
+
+# Exclude static live snapshots and build artifacts
+publish-static-live-20260320232831/
+
+# Exclude markdown documentation files (not needed on the live site)
+README.md
+README-V3.0.0.md
+README-V3.0.0.md
+DOCUMENTATION-INDEX.md
+V3.0.0-DEPLOYMENT-SUMMARY.md

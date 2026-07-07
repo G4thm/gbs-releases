@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBS v3.0.0 - Documentation & Features</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .version-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        main {
+            padding: 40px;
+        }
+        .highlight-feature {
+            background: #f0f4ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+            transform: translateY(-5px);
+        }
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .feature-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .feature-card li {
+            padding: 5px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+        .feature-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .section h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .box {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.05);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+        }
+        table tr:hover {
+            background: #f5f5f5;
+        }
+        .new-badge {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        footer {
+            background: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+            border-top: 1px solid #ddd;
+        }
+        .download-section {
+            background: linear-gradient(135deg, #fff5e6 0%, #ffe6cc 100%);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        .download-section h2 {
+            color: #d97706;
+            border: none;
+            padding-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 GBS Billing Software</h1>
+            <p>Complete Business Billing & Inventory Management</p>
+            <span class="version-badge">Version 3.0.0 - March 2026</span>
+        </header>
+
+        <main>
+            <!-- What's New Section -->
+            <section class="section">
+                <h2>✨ What's New in v3.0.0</h2>
+                <div class="highlight-feature">
+                    <h3>🎉 Customizable Unit Fields</h3>
+                    <p><strong>The most requested feature - FINALLY HERE!</strong></p>
+                    <p style="margin-top: 10px;">
+                        In version 3.0, we've transformed the unit selection from a restrictive dropdown to a powerful text field. 
+                        You can now type ANY unit you need!
+                    </p>
+                    <p style="margin-top: 10px; font-weight: bold;">Examples:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✓ Per Pair (for footwear)</li>
+                        <li>✓ Per Set (for combination packs)</li>
+                        <li>✓ Per Bundle (for bulk items)</li>
+                        <li>✓ Per Kit (for component sets)</li>
+                        <li>✓ Per Carton (for shipping units)</li>
+                        <li>✓ Any custom unit you need</li>
+                    </ul>
+                    <p style="margin-top: 15px; font-style: italic; color: #666;">
+                        This applies to product purchases, customer invoices, and quotations.
+                    </p>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🔒 Enhanced Security</h3>
+                        <ul>
+                            <li>.NET 8.0 framework</li>
+                            <li>Updated dependencies</li>
+                            <li>Better encryption</li>
+                            <li>Audit logging</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ Performance</h3>
+                        <ul>
+                            <li>Faster search</li>
+                            <li>Optimized queries</li>
+                            <li>Reduced memory</li>
+                            <li>Quick reports</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🎨 Better UX</h3>
+                        <ul>
+                            <li>Modern interface</li>
+                            <li>Smooth navigation</li>
+                            <li>Better forms</li>
+                            <li>Clear feedback</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Download Section -->
+            <div class="download-section">
+                <h2>📥 Download Now</h2>
+                <p style="margin: 15px 0; font-size: 1.1em;">
+                    GBS v3.0.0 is ready! Choose your version:
+                </p>
+                <table style="max-width: 600px; margin: 20px auto;">
+                    <tr>
+                        <th>Version</th>
+                        <th>Size</th>
+                        <th>Type</th>
+                    </tr>
+                    <tr>
+                        <td><strong>GBS-Setup-3.0.0.exe</strong></td>
+                        <td>56.77 MB</td>
+                        <td>Professional Edition</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GBS-Trial-Setup-3.0.0-trial.exe</strong></td>
+                        <td>56.77 MB</td>
+                        <td>30-Day Trial (all features)</td>
+                    </tr>
+                </table>
+                <p style="margin-top: 15px; color: #666;">
+                    Log in to the update portal and click "Download EXE" to get started
+                </p>
+            </div>
+
+            <!-- Core Features -->
+            <section class="section">
+                <h2>🎯 Core Features</h2>
+                
+                <h3>📦 Product Management</h3>
+                <div class="box">
+                    <p>Complete product catalog with pricing, categories, and inventory tracking</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Add and manage unlimited products</li>
+                        <li>Customizable units <span class="new-badge">NEW</span></li>
+                        <li>Cost and selling prices</li>
+                        <li>HSN/SAC codes for GST compliance</li>
+                        <li>Stock level management</li>
+                        <li>Category organization</li>
+                    </ul>
+                </div>
+
+                <h3>🛒 Purchase Orders</h3>
+                <div class="box">
+                    <p>Track vendor purchases with complete order management</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Create purchase orders</li>
+                        <li>Custom units for receiving <span class="new-badge">NEW</span></li>
+                        <li>Vendor management</li>
+                        <li>Track received vs ordered</li>
+                        <li>Vendor analysis reports</li>
+                    </ul>
+                </div>
+
+                <h3>📄 Professional Invoicing</h3>
+                <div class="box">
+                    <p>Create professional invoices with automatic GST calculations</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Custom invoice numbering</li>
+                        <li>Flexible units <span class="new-badge">NEW</span></li>
+                        <li>Automatic calculations</li>
+                        <li>Multiple GST rates</li>
+                        <li>Discount management</li>
+                        <li>Payment tracking</li>
+                        <li>Print or export to PDF</li>
+                    </ul>
+                </div>
+
+                <h3>📋 Quotations</h3>
+                <div class="box">
+                    <p>Generate professional quotations and track conversions</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Create quotations easily</li>
+                        <li>Custom units <span class="new-badge">NEW</span></li>
+                        <li>Convert to invoices</li>
+                        <li>Track quote status</li>
+                        <li>Send to customers (email)</li>
+                    </ul>
+                </div>
+
+                <h3>📊 Comprehensive Reporting</h3>
+                <div class="box">
+                    <p>Powerful reports for business intelligence</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Sales reports by customer/product</li>
+                        <li>Inventory valuation</li>
+                        <li>GST compliance reports (GSTR-1, GSTR-2)</li>
+                        <li>Financial statements (P&L, Balance Sheet)</li>
+                        <li>Trend analysis</li>
+                        <li>Export to Excel and PDF</li>
+                    </ul>
+                </div>
+
+                <h3>👥 User Management</h3>
+                <div class="box">
+                    <p>Role-based access control for team collaboration</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Create multiple user accounts</li>
+                        <li>Admin, Manager, User roles</li>
+                        <li>Audit logging</li>
+                        <li>Secure password management</li>
+                        <li>Session control</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Quick Start -->
+            <section class="section">
+                <h2>🚀 Quick Start (5 Steps)</h2>
+                
+                <table>
+                    <tr>
+                        <th style="width: 100px;">Step</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td><strong>1. Download</strong></td>
+                        <td>Visit the GBS Update Portal and download the installer</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2. Install</strong></td>
+                        <td>Run the installer and follow the on-screen prompts (1-2 minutes)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3. Launch</strong></td>
+                        <td>Start GBS and create your admin account</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4. Configure</strong></td>
+                        <td>Enter company info and set up your GST rates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5. Start Billing</strong></td>
+                        <td>Add products and create your first invoice!</td>
+                    </tr>
+                </table>
+            </section>
+
+            <!-- Trial vs Professional -->
+            <section class="section">
+                <h2>📦 Edition Comparison</h2>
+                
+                <table>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Trial Edition</th>
+                        <th>Professional Edition</th>
+                    </tr>
+                    <tr>
+                        <td>Customizable Units</td>
+                        <td>✓ Yes</td>
+                        <td>✓ Yes</td>
+                    </tr>
+                    <tr>
+                        <td>Products</td>
+                        <td>✓ Unlimited</td>
+                        <td>✓ Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Invoices/Quotations</td>
+                        <td>Max 100</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>User Accounts</td>
+                        <td>Max 3</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Reports</td>
+                        <td>✓ All reports</td>
+                        <td>✓ All reports</td>
+                    </tr>
+                    <tr>
+                        <td>Support</td>
+                        <td>Community only</td>
+                        <td>Email support</td>
+                    </tr>
+                    <tr>
+                        <td>Trial Period</td>
+                        <td>30 days</td>
+                        <td>Forever</td>
+                    </tr>
+                </table>
+
+                <div style="margin-top: 20px; padding: 15px; background: #f0f4ff; border-radius: 5px;">
+                    <p><strong>Upgrading from Trial to Professional:</strong></p>
+                    <ol style="margin: 10px 0; margin-left: 20px;">
+                        <li>Purchase a license key</li>
+                        <li>Open GBS → Settings → License</li>
+                        <li>Enter your license key</li>
+                        <li>Restart GBS</li>
+                        <li>Full features unlocked!</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- System Requirements -->
+            <section class="section">
+                <h2>💻 System Requirements</h2>
+                
+                <h3>Minimum Requirements</h3>
+                <div class="box">
+                    <ul>
+                        <li><strong>OS:</strong> Windows 10 (Build 1909) or later</li>
+                        <li><strong>RAM:</strong> 4 GB</li>
+                        <li><strong>Storage:</strong> 500 MB free space</li>
+                        <li><strong>Display:</strong> 1280x720 minimum</li>
+                    </ul>
+                </div>
+
+                <h3>Recommended Specifications</h3>
+                <div class="box">
+                    <ul>
+                        <li><strong>OS:</strong> Windows 11</li>
+                        <li><strong>RAM:</strong> 8 GB or more</li>
+                        <li><strong>Storage:</strong> SSD with 2+ GB free</li>
+                        <li><strong>Display:</strong> Full HD (1920x1080) or higher</li>
+                    </ul>
+                </div>
+
+                <div style="margin-top: 15px; padding: 15px; background: #fef3cd; border-radius: 5px; border-left: 4px solid #ffc107;">
+                    <p><strong>Note:</strong> .NET 8.0 runtime is automatically installed with GBS setup. No separate installation needed.</p>
+                </div>
+            </section>
+
+            <!-- Support -->
+            <section class="section">
+                <h2>🤝 Support & Help</h2>
+                
+                <h3>Getting Help</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>📖 Documentation</h3>
+                        <ul>
+                            <li>Complete features guide</li>
+                            <li>Getting started tutorial</li>
+                            <li>FAQ section</li>
+                            <li>Video walkthroughs</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📧 Email Support</h3>
+                        <ul>
+                            <li>Professional support</li>
+                            <li>24-hour response</li>
+                            <li>Issue tracking</li>
+                            <li>Dedicated team</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💬 Community</h3>
+                        <ul>
+                            <li>Active forum</li>
+                            <li>User discussions</li>
+                            <li>Tips & tricks</li>
+                            <li>Peer support</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box" style="margin-top: 20px;">
+                    <p><strong>Contact Information:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Email:</strong> support@gbsbilling.com</li>
+                        <li><strong>Portal Form:</strong> Use "Submit a Query" on portal</li>
+                        <li><strong>Community:</strong> forum.gbsbilling.com</li>
+                        <li><strong>Response Time:</strong> Within 24 business hours</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- FAQ -->
+            <section class="section">
+                <h2>❓ Frequently Asked Questions</h2>
+                
+                <h3>Installation & Setup</h3>
+                <div class="box">
+                    <p><strong>Q: How long does installation take?</strong><br>
+                    A: Usually 1-2 minutes on a typical computer.</p>
+                </div>
+                <div class="box">
+                    <p><strong>Q: Do I need internet to use GBS?</strong><br>
+                    A: No! GBS works completely offline. All data is stored locally on your computer.</p>
+                </div>
+
+                <h3>Features & Usage</h3>
+                <div class="box">
+                    <p><strong>Q: Can I use custom units?</strong><br>
+                    A: Yes! In v3.0, the unit field is a text box. Type "Per Pair", "Bundle", or any custom unit you need.</p>
+                </div>
+                <div class="box">
+                    <p><strong>Q: Can multiple people use GBS?</strong><br>
+                    A: Yes! Create multiple user accounts with different roles (Admin, Manager, User).</p>
+                </div>
+
+                <h3>Data & Backup</h3>
+                <div class="box">
+                    <p><strong>Q: Is my data safe?</strong><br>
+                    A: Yes! All data stays on your computer. Automatic daily backups are created.</p>
+                </div>
+                <div class="box">
+                    <p><strong>Q: How do I backup my data?</strong><br>
+                    A: GBS automatically creates daily backups. You can also manually backup anytime from Settings.</p>
+                </div>
+
+                <h3>Trial & Licensing</h3>
+                <div class="box">
+                    <p><strong>Q: How long is the trial?</strong><br>
+                    A: 30 days from first launch with all features included.</p>
+                </div>
+                <div class="box">
+                    <p><strong>Q: What are the trial limits?</strong><br>
+                    A: 100 invoices/quotations, 3 user accounts, and community support only.</p>
+                </div>
+            </section>
+
+        </main>
+
+        <footer>
+            <p><strong>GBS Billing Software v3.0.0</strong> | Released March 2026</p>
+            <p>© 2026 GBS Development Team. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">
+                For licensing inquiries: sales@gbsbilling.com | Support: support@gbsbilling.com
+            </p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,9 @@
+﻿{
+    "version":  "4.0.1",
+    "fileName":  "GBS-Setup-4.0.1.exe",
+    "downloadUrl":  "./downloads/GBS-Setup-4.0.1.exe",
+    "manualFileName":  "GBS-User-Manual.html",
+    "manualUrl":  "./v3.0.0-DOCUMENTATION.html",
+    "publishedAt":  "2026-05-07T07:51:55.8956514Z",
+    "notes":  "Version 4.0.1 - Fixed payment mode dropdown in Payment History Editor."
+}

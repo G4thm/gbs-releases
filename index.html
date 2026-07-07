@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GBS Updates</title>
+  <style>
+    :root {
+      --bg: #eef2f7;
+      --panel: #ffffff;
+      --text: #102033;
+      --muted: #5f6f82;
+      --accent: #c1121f;
+      --accent-dark: #8f0d17;
+      --accent-soft: #fdecef;
+      --border: #dbe3ec;
+      --shadow: 0 18px 45px rgba(16, 32, 51, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(193, 18, 31, 0.08), transparent 30%),
+        linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 48px 0 56px;
+    }
+
+    .hero {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 32px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(193, 18, 31, 0.08);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 18px 0 10px;
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 1.05;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.7;
+      max-width: 58ch;
+    }
+
+    .download-panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: linear-gradient(180deg, #fff 0%, #f9fbfd 100%);
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .version {
+      margin-top: 8px;
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .meta {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 14px;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background 0.18s ease, transform 0.18s ease;
+    }
+
+    .button:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button[aria-disabled="true"] {
+      background: #94a3b8;
+      pointer-events: none;
+    }
+
+    .button.secondary {
+      background: #fff;
+      color: var(--accent-dark);
+      border: 1px solid #f2b6bc;
+    }
+
+    .button.secondary:hover {
+      background: var(--accent-soft);
+    }
+
+    .section {
+      margin-top: 28px;
+      padding: 28px;
+    }
+
+    .section h2 {
+      margin: 0 0 14px;
+      font-size: 1.35rem;
+    }
+
+    .notes {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .quickstart {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .quickstart .item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+    }
+
+    .quickstart .item h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .quickstart .item p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .release-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .section-copy {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 70ch;
+    }
+
+    .comments-grid {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 18px;
+      margin-top: 12px;
+    }
+
+    .comment-form,
+    .comment-stream {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #fff;
+      padding: 18px;
+    }
+
+    .comment-form {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: #f8fafc;
+      color: var(--text);
+      padding: 12px 13px;
+      font: inherit;
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 132px;
+    }
+
+    .comment-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .comment-item {
+      padding: 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+      border: 1px solid var(--border);
+    }
+
+    .comment-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .comment-author {
+      font-weight: 800;
+    }
+
+    .comment-date {
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    .comment-text {
+      margin: 0;
+      color: var(--text);
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    .pill {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-dark);
+      background: var(--accent-soft);
+      border: 1px solid #f5c4ca;
+      margin-bottom: 10px;
+    }
+
+    .timeline {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .guide {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    details {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      background: #fff;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    details p,
+    details ul {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    details ul {
+      padding-left: 18px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 10px;
+      font-size: 0.92rem;
+    }
+
+    .footer-links a {
+      color: var(--accent-dark);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .status {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer {
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      text-align: center;
+    }
+
+    @media (max-width: 820px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-main,
+      .download-panel,
+      .section {
+        padding: 22px;
+      }
+
+      .quickstart,
+      .release-grid,
+      .comments-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <article class="card hero-main">
+        <span class="eyebrow">Official Release Download</span>
+        <h1>Download the latest GBS desktop update.</h1>
+        <p class="lede">
+          This page can be hosted on GitHub Pages, IIS, Azure Static Web Apps, or any normal web server.
+          Users can download the current installer directly without logging into the application.
+        </p>
+      </article>
+
+      <aside class="card download-panel">
+        <div>
+          <div class="label">Current Version</div>
+          <div class="version" id="version">Checking...</div>
+          <div class="meta" id="meta">Loading release information.</div>
+        </div>
+        <div>
+          <a id="downloadLink" class="button" href="#" aria-disabled="true">Installer not published yet</a>
+          <a id="manualLink" class="button secondary" href="./v3.0.0-DOCUMENTATION.html" download style="margin-top: 10px;">Download User Manual</a>
+          <div class="status" id="status">Publish a release manifest and installer into this site.</div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="card section">
+      <h2>Quick Start</h2>
+      <div class="quickstart">
+        <article class="item">
+          <h3>1. Install</h3>
+          <p>Download the latest installer, run setup as admin, and launch GBS from desktop or Start menu.</p>
+        </article>
+        <article class="item">
+          <h3>2. Configure</h3>
+          <p>Complete company setup, choose backup location, enable cloud sync, and test backup protection.</p>
+        </article>
+        <article class="item">
+          <h3>3. Operate</h3>
+          <p>Use tabs for Sales, Inventory, Purchases, Reports, Multi User, and Diagnostics to run daily workflows.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Release Notes</h2>
+      <div class="release-grid">
+        <div>
+          <span class="pill">Current Release</span>
+          <ul class="notes" id="releaseHighlights">
+            <li>Loading latest release notes.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="pill">Recent Milestones</span>
+          <ul class="timeline">
+            <li>v3.0.0: OTP hardening, provider options (SMTP/SendGrid/Mailgun), secret encryption at rest, and secure input controls.</li>
+            <li>v2.5.x: Email-linked account restore and OTP verification flow for reinstall recovery.</li>
+            <li>v2.4.x: Immutable audit exports, signature verification, RBAC policy matrix, diagnostics center.</li>
+            <li>v2.3.x: Cloud reliability improvements, backup verification checks, and restore safety hardening.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Complete Usage Guide (All Major Features)</h2>
+      <div class="guide">
+        <details open>
+          <summary>Initial Setup and Company Profile</summary>
+          <ul>
+            <li>Open Settings and fill company identity, GSTIN, address, logo, invoice/quotation numbering, and declaration terms.</li>
+            <li>Set backup folder outside system drive and enable auto cloud sync.</li>
+            <li>Run Test Backup + Cloud Sync before finishing setup so recovery protection is verified.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Sales, Quotations, and Invoice Workflow</summary>
+          <ul>
+            <li>Create quotation or invoice from Sales workspace, then add products/services and quantity units.</li>
+            <li>Use shortcut keys for faster operations: new invoice, quotation mode, and save actions.</li>
+            <li>Convert finalized quotations into invoices and track payment updates from history views.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Inventory and Purchase Controls</summary>
+          <ul>
+            <li>Add products with stock and purchase linkage to keep inventory movements auditable.</li>
+            <li>Use manual stock edit and stock reconciliation tools when mismatches are detected.</li>
+            <li>Export mismatch reports for verification and physical stock checks.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Cloud Backup, Restore, and Account Recovery</summary>
+          <ul>
+            <li>Configure Local Folder or Google Drive provider for automated backup copy operations.</li>
+            <li>Use Verify Cloud Backup to validate ZIP integrity, database quick check, and table presence.</li>
+            <li>Link a recovery email account, request OTP, verify OTP, and run restore-from-email on reinstall.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>OTP Security and Delivery Providers</summary>
+          <ul>
+            <li>Choose OTP delivery provider: SMTP, SendGrid, or Mailgun.</li>
+            <li>OTP send uses cooldown protection and verify attempts are lock-protected after repeated failures.</li>
+            <li>Provider credentials are stored with encryption and can be managed from setup/settings panels.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>RBAC, Audit Trail, and Compliance</summary>
+          <ul>
+            <li>Use role-permission matrix to grant granular rights (create users, reset password, settings updates, etc.).</li>
+            <li>Export/import RBAC policy for portability across environments.</li>
+            <li>Generate immutable audit packages with hash-chain verification and signature checks.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Diagnostics, Health Monitoring, and Operations</summary>
+          <ul>
+            <li>Run health monitor to inspect sync failures, retry queues, and system job status.</li>
+            <li>Use diagnostics center for root-cause hints when cloud sync or restore actions fail.</li>
+            <li>Execute command palette actions for quick operations and administrative workflows.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Update Process for Admins</summary>
+          <ul>
+            <li>Build installer and publish to this site downloads folder.</li>
+            <li>Update latest manifest with version, publish date, file, and release notes.</li>
+            <li>Share this page URL with users; they always get the newest installer from one place.</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>How This Website Works</h2>
+      <ul class="notes">
+        <li>The page reads update-site/releases/latest.json to discover the latest installer.</li>
+        <li>The installer EXE is served from update-site/downloads.</li>
+        <li>Release notes are loaded from the manifest and shown in the Release Notes section above.</li>
+        <li>The latest user manual is published as a downloadable HTML guide for the same release.</li>
+        <li>Comments are stored per browser in static hosting mode, which keeps the page Vercel-friendly.</li>
+        <li>You can replace the file on every release and keep this page URL unchanged.</li>
+        <li>The same manifest can also be reused by in-app update checkers.</li>
+      </ul>
+    </section>
+
+    <section class="card section">
+      <div class="section-head">
+        <div>
+          <h2>Comments for the Latest EXE</h2>
+          <p class="section-copy">Share feedback about the current release, including install experience, missing features, or bugs. Comments are grouped by the current version.</p>
+        </div>
+      </div>
+
+      <div class="comments-grid">
+        <form id="commentForm" class="comment-form">
+          <div class="field">
+            <label for="commentName">Your name</label>
+            <input id="commentName" name="commentName" maxlength="80" placeholder="Rajesh" />
+          </div>
+          <div class="field">
+            <label for="commentText">Comment</label>
+            <textarea id="commentText" name="commentText" maxlength="1000" placeholder="What worked well, what needs improvement, or what you want in the next release."></textarea>
+          </div>
+          <button class="button" type="submit">Post Comment</button>
+          <p class="status" id="commentStatus">Comments are saved locally in this browser for the current release.</p>
+        </form>
+
+        <div class="comment-stream">
+          <span class="pill">Latest Responses</span>
+          <div class="comment-list" id="commentList">
+            <div class="comment-item">
+              <div class="comment-head">
+                <span class="comment-author">No comments yet</span>
+              </div>
+              <p class="comment-text">Be the first to leave feedback on this EXE release.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer">GBS Update Portal</p>
+    <div class="footer-links">
+      <a href="./trial.html">Trial Download Channel</a>
+      <a href="./releases.html">Previous Releases</a>
+      <a href="./README.md">Site Admin Guide</a>
+    </div>
+  </main>
+
+  <script>
+    const DEFAULT_MANUAL_URL = "./v3.0.0-DOCUMENTATION.html";
+    const COMMENTS_STORAGE_PREFIX = "gbs-exe-comments:";
+
+    function toReleaseList(notes) {
+      if (!notes) {
+        return [];
+      }
+
+      if (Array.isArray(notes)) {
+        return notes.filter(Boolean).map(String);
+      }
+
+      if (typeof notes === "string") {
+        return notes
+          .split(/\r?\n|\s*\|\s*/)
+          .map((entry) => entry.trim())
+          .filter((entry) => entry.length > 0);
+      }
+
+      return [];
+    }
+
+    function safeHtml(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function getCommentKey(version) {
+      return COMMENTS_STORAGE_PREFIX + (version || "latest");
+    }
+
+    function loadComments(version) {
+      try {
+        const raw = localStorage.getItem(getCommentKey(version));
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch {
+        return [];
+      }
+    }
+
+    function saveComments(version, comments) {
+      localStorage.setItem(getCommentKey(version), JSON.stringify(comments));
+    }
+
+    function renderComments(version) {
+      const commentList = document.getElementById("commentList");
+      const comments = loadComments(version);
+
+      if (comments.length === 0) {
+        commentList.innerHTML = "<div class=\"comment-item\"><div class=\"comment-head\"><span class=\"comment-author\">No comments yet</span></div><p class=\"comment-text\">Be the first to leave feedback on this EXE release.</p></div>";
+        return;
+      }
+
+      commentList.innerHTML = comments.slice(0, 12).map((comment) => {
+        const author = safeHtml(comment.author || "Anonymous");
+        const text = safeHtml(comment.text || "");
+        const createdAt = comment.createdAt ? new Date(comment.createdAt) : null;
+        const dateText = createdAt && !Number.isNaN(createdAt.getTime())
+          ? createdAt.toLocaleString()
+          : "Just now";
+
+        return "<article class=\"comment-item\">"
+          + "<div class=\"comment-head\">"
+          + "<span class=\"comment-author\">" + author + "</span>"
+          + "<span class=\"comment-date\">" + safeHtml(dateText) + "</span>"
+          + "</div>"
+          + "<p class=\"comment-text\">" + text + "</p>"
+          + "</article>";
+      }).join("");
+    }
+
+    async function loadLatestRelease() {
+      const versionEl = document.getElementById("version");
+      const metaEl = document.getElementById("meta");
+      const statusEl = document.getElementById("status");
+      const linkEl = document.getElementById("downloadLink");
+      const manualLinkEl = document.getElementById("manualLink");
+      const commentStatusEl = document.getElementById("commentStatus");
+      const highlightsEl = document.getElementById("releaseHighlights");
+      const commentForm = document.getElementById("commentForm");
+
+      try {
+        const response = await fetch("./releases/latest.json", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("Release manifest not found");
+        }
+
+        const release = await response.json();
+        const publishedAt = release.publishedAt ? new Date(release.publishedAt) : null;
+        const publishedText = publishedAt && !Number.isNaN(publishedAt.getTime())
+          ? publishedAt.toLocaleString()
+          : "Unknown";
+
+        versionEl.textContent = release.version || "Unknown";
+        metaEl.innerHTML = "File: <strong>" + (release.fileName || "-") + "</strong><br>Published: " + publishedText;
+        statusEl.textContent = release.notes || "Latest stable installer available.";
+        manualLinkEl.href = release.manualUrl || DEFAULT_MANUAL_URL;
+        manualLinkEl.setAttribute("download", release.manualFileName || "GBS-User-Manual.html");
+
+        const noteItems = toReleaseList(release.notes);
+        if (noteItems.length > 0) {
+          highlightsEl.innerHTML = noteItems
+            .map((item) => "<li>" + item.replace(/</g, "&lt;").replace(/>/g, "&gt;") + "</li>")
+            .join("");
+        } else {
+          highlightsEl.innerHTML = "<li>Latest stable installer available.</li>";
+        }
+
+        if (release.downloadUrl) {
+          linkEl.href = release.downloadUrl;
+          linkEl.textContent = "Download Installer";
+          linkEl.removeAttribute("aria-disabled");
+        }
+
+        renderComments(release.version || "latest");
+
+        if (!commentForm.dataset.bound) {
+          commentForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const nameInput = document.getElementById("commentName");
+            const textInput = document.getElementById("commentText");
+            const author = (nameInput.value || "Anonymous").trim().slice(0, 80);
+            const text = (textInput.value || "").trim().slice(0, 1000);
+
+            if (!text) {
+              commentStatusEl.textContent = "Enter a comment before posting.";
+              return;
+            }
+
+            const comments = loadComments(release.version || "latest");
+            comments.unshift({
+              author: author || "Anonymous",
+              text,
+              createdAt: new Date().toISOString()
+            });
+
+            saveComments(release.version || "latest", comments);
+            textInput.value = "";
+            commentStatusEl.textContent = "Comment posted for version " + (release.version || "latest") + ".";
+            renderComments(release.version || "latest");
+          });
+          commentForm.dataset.bound = "true";
+        }
+      } catch (error) {
+        versionEl.textContent = "Not published";
+        metaEl.textContent = "No installer manifest is available yet.";
+        statusEl.textContent = "Publish the installer and latest.json to activate downloads.";
+        manualLinkEl.href = DEFAULT_MANUAL_URL;
+        highlightsEl.innerHTML = "<li>Publish a release manifest with notes to show release history.</li>";
+        commentStatusEl.textContent = "Comments will activate once a release is loaded.";
+      }
+    }
+
+    loadLatestRelease();
+  </script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GBS Release History</title>
+  <style>
+    :root {
+      --bg: #eef2f7;
+      --panel: #ffffff;
+      --text: #102033;
+      --muted: #5f6f82;
+      --accent: #c1121f;
+      --accent-dark: #8f0d17;
+      --border: #dbe3ec;
+      --shadow: 0 18px 45px rgba(16, 32, 51, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(193, 18, 31, 0.08), transparent 30%),
+        linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(1050px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 44px 0 56px;
+    }
+
+    .hero,
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 26px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(193, 18, 31, 0.08);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 14px 0 8px;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 72ch;
+    }
+
+    .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .button.primary:hover {
+      background: var(--accent-dark);
+      transform: translateY(-1px);
+    }
+
+    .button.ghost {
+      color: var(--accent-dark);
+      border: 1px solid #f2b6bc;
+      background: #fff;
+    }
+
+    .grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .card {
+      padding: 18px;
+    }
+
+    .version {
+      margin: 0;
+      font-size: 1.35rem;
+      color: var(--text);
+    }
+
+    .meta {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.65;
+    }
+
+    .notes {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .download {
+      margin-top: 12px;
+      display: inline-block;
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .download:hover {
+      text-decoration: underline;
+    }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 30px 14px;
+    }
+
+    @media (max-width: 860px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <span class="eyebrow">Release Archive</span>
+      <h1>GBS Version History and Changelogs</h1>
+      <p class="lede">
+        Review all published releases, understand feature updates, and download the installer for each version.
+        This page is generated from releases/history.json.
+      </p>
+      <div class="actions">
+        <a class="button primary" href="./index.html">Back to Latest Release</a>
+        <a class="button ghost" href="./trial.html">Trial Download Channel</a>
+        <a class="button ghost" href="./README.md">Site Admin Guide</a>
+      </div>
+    </section>
+
+    <section id="history" class="grid" aria-live="polite">
+      <article class="card empty">Loading release history...</article>
+    </section>
+  </main>
+
+  <script>
+    function normalizeNotes(notes) {
+      if (!notes) {
+        return ["No detailed changelog provided."];
+      }
+
+      if (Array.isArray(notes)) {
+        const items = notes.filter(Boolean).map(String);
+        return items.length > 0 ? items : ["No detailed changelog provided."];
+      }
+
+      if (typeof notes === "string") {
+        const items = notes
+          .split(/\r?\n|\s*\|\s*/)
+          .map((entry) => entry.trim())
+          .filter((entry) => entry.length > 0);
+        return items.length > 0 ? items : ["No detailed changelog provided."];
+      }
+
+      return ["No detailed changelog provided."];
+    }
+
+    function safe(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function toDateText(value) {
+      if (!value) {
+        return "Unknown";
+      }
+
+      const parsed = new Date(value);
+      return Number.isNaN(parsed.getTime()) ? "Unknown" : parsed.toLocaleString();
+    }
+
+    function renderHistory(entries) {
+      const root = document.getElementById("history");
+      if (!entries || entries.length === 0) {
+        root.innerHTML = "<article class=\"card empty\">No release history found.</article>";
+        return;
+      }
+
+      root.innerHTML = entries.map((entry) => {
+        const notes = normalizeNotes(entry.notes)
+          .map((item) => "<li>" + safe(item) + "</li>")
+          .join("");
+
+        const version = safe(entry.version || "Unknown");
+        const fileName = safe(entry.fileName || "-");
+        const publishedAt = toDateText(entry.publishedAt);
+        const downloadUrl = safe(entry.downloadUrl || "#");
+
+        return "<article class=\"card\">"
+          + "<h2 class=\"version\">Version " + version + "</h2>"
+          + "<p class=\"meta\">File: <strong>" + fileName + "</strong><br>Published: " + safe(publishedAt) + "</p>"
+          + "<ul class=\"notes\">" + notes + "</ul>"
+          + "<a class=\"download\" href=\"" + downloadUrl + "\">Download this version</a>"
+          + "</article>";
+      }).join("");
+    }
+
+    async function loadHistory() {
+      try {
+        const response = await fetch("./releases/history.json", { cache: "no-store" });
+        if (!response.ok) {
+          throw new Error("History file not found.");
+        }
+
+        const history = await response.json();
+        renderHistory(Array.isArray(history) ? history : []);
+      } catch (error) {
+        renderHistory([]);
+      }
+    }
+
+    loadHistory();
+  </script>
+</body>
+</html>

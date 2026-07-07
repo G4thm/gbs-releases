@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GBS Trial Downloads</title>
+  <style>
+    :root {
+      --bg: #eef6ff;
+      --panel: #ffffff;
+      --text: #0f2440;
+      --muted: #5a6f8d;
+      --accent: #0f5fbf;
+      --accent-dark: #0a458b;
+      --border: #d8e5f7;
+      --shadow: 0 18px 45px rgba(16, 32, 51, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(15, 95, 191, 0.08), transparent 30%),
+        linear-gradient(180deg, #f9fbff 0%, var(--bg) 100%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      width: min(1060px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 46px 0 56px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 28px;
+      margin-bottom: 22px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      border-radius: 999px;
+      padding: 7px 12px;
+      background: rgba(15, 95, 191, 0.1);
+      color: var(--accent-dark);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 12px 0 8px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .lede {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 75ch;
+    }
+
+    .actions {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .button.primary {
+      color: #fff;
+      background: var(--accent);
+    }
+
+    .button.primary:hover { background: var(--accent-dark); }
+
+    .button.ghost {
+      color: var(--accent-dark);
+      border: 1px solid #b9d2f2;
+      background: #fff;
+    }
+
+    .section {
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .notes {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .item {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      background: #fff;
+    }
+
+    .item h3 {
+      margin: 0 0 6px;
+      font-size: 1.12rem;
+    }
+
+    .item a {
+      color: var(--accent-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .item a:hover { text-decoration: underline; }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="card hero">
+      <span class="eyebrow">Trial Channel</span>
+      <h1>GBS 12-Day Trial Download</h1>
+      <p class="lede">
+        Install the latest trial edition to evaluate core workflows. The trial is limited to 12 days
+        and selected advanced features are restricted to the full licensed edition.
+      </p>
+      <div class="actions">
+        <a class="button primary" id="trialDownload" href="#">Loading trial installer...</a>
+        <a class="button ghost" href="./index.html">Full Version Page</a>
+        <a class="button ghost" href="./releases.html">Full Version History</a>
+      </div>
+    </section>
+
+    <section class="card section">
+      <h2>Latest Trial Build</h2>
+      <p class="meta" id="trialMeta">Loading trial metadata...</p>
+      <ul class="notes" id="trialNotes">
+        <li>Loading release notes.</li>
+      </ul>
+    </section>
+
+    <section class="card section">
+      <h2>Trial Release History</h2>
+      <div id="history" class="grid">
+        <article class="item">Loading trial history...</article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function toNotes(input) {
+      if (!input) return ["No changelog details available."];
+      if (Array.isArray(input)) {
+        const items = input.filter(Boolean).map(String);
+        return items.length ? items : ["No changelog details available."];
+      }
+      if (typeof input === "string") {
+        const items = input
+          .split(/\r?\n|\s*\|\s*/)
+          .map((x) => x.trim())
+          .filter((x) => x.length > 0);
+        return items.length ? items : ["No changelog details available."];
+      }
+      return ["No changelog details available."];
+    }
+
+    function safe(text) {
+      return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function dateText(value) {
+      const dt = new Date(value);
+      return Number.isNaN(dt.getTime()) ? "Unknown" : dt.toLocaleString();
+    }
+
+    async function loadTrialLatest() {
+      const btn = document.getElementById("trialDownload");
+      const meta = document.getElementById("trialMeta");
+      const notes = document.getElementById("trialNotes");
+
+      try {
+        const res = await fetch("./releases/trial-latest.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("Trial manifest missing");
+        const latest = await res.json();
+
+        btn.href = latest.downloadUrl || "#";
+        btn.textContent = "Download Trial " + (latest.version || "");
+
+        meta.innerHTML = "File: <strong>" + safe(latest.fileName || "-") + "</strong><br>"
+          + "Published: " + safe(dateText(latest.publishedAt)) + "<br>"
+          + "Trial Duration: " + safe((latest.trialDays || 12) + " days");
+
+        notes.innerHTML = toNotes(latest.notes)
+          .map((n) => "<li>" + safe(n) + "</li>")
+          .join("");
+      } catch {
+        btn.textContent = "Trial not published yet";
+        btn.removeAttribute("href");
+        meta.textContent = "Publish trial-latest.json to activate this channel.";
+        notes.innerHTML = "<li>No trial manifest found.</li>";
+      }
+    }
+
+    async function loadTrialHistory() {
+      const host = document.getElementById("history");
+      try {
+        const res = await fetch("./releases/trial-history.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("Trial history missing");
+        const history = await res.json();
+        if (!Array.isArray(history) || history.length === 0) {
+          host.innerHTML = "<article class=\"item\">No trial history entries yet.</article>";
+          return;
+        }
+
+        host.innerHTML = history.map((entry) => {
+          const detail = toNotes(entry.notes).map((n) => "<li>" + safe(n) + "</li>").join("");
+          return "<article class=\"item\">"
+            + "<h3>Version " + safe(entry.version || "-") + "</h3>"
+            + "<p class=\"meta\">Published: " + safe(dateText(entry.publishedAt)) + "</p>"
+            + "<ul class=\"notes\">" + detail + "</ul>"
+            + "<a href=\"" + safe(entry.downloadUrl || "#") + "\">Download this trial version</a>"
+            + "</article>";
+        }).join("");
+      } catch {
+        host.innerHTML = "<article class=\"item\">No trial history entries yet.</article>";
+      }
+    }
+
+    loadTrialLatest();
+    loadTrialHistory();
+  </script>
+</body>
+</html>
